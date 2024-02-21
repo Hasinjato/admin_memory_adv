@@ -1,0 +1,72 @@
+<!-- sidebar menu area start -->
+<div class="sidebar-menu d-print-none">
+    <div class="sidebar-header">
+        <div class="logo">
+            <a href="index.html"><img src="assets/images/icon/logo.png" alt="logo"></a>
+        </div>
+    </div>
+    <div class="main-menu">
+        <div class="menu-inner">
+            <nav>
+                <ul class="metismenu" id="menu">
+                        <% if(active === 'home' ) { %>
+                            <li class="active">
+                                <a href="/home" aria-expanded="true"><i class="ti-dashboard"></i><span>Accueil</span></a>
+                            </li>
+                        <% }  else { %>
+                            <li>
+                                <a href="/home" aria-expanded="true"><i class="ti-dashboard"></i><span>Accueil</span></a>
+                            </li>
+                        <% }
+                            
+                        if(active === 'add' ){ %>
+                            <li class="active">
+                                <a href="/memory/add" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span
+                                        class="h5">Ajouter</span></a>
+                            </li>
+                        <%  } else { %>
+                            <li>
+                                <a href="/memory/add" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span
+                                        class="h5">Ajouter</span></a>
+                            </li>
+                        <% }
+
+                        if(active === 'per_mention') { %>
+                            <li class="active">
+                                <a href="/memory/per_mention" aria-expanded="true"><i
+                                        class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
+                                        mention</span></a>
+                            </li>
+                        <%  }  else { %>
+                            <li>
+                                <a href="/memory/per_mention" aria-expanded="true"><i
+                                        class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
+                                        mention</span></a>
+                            </li>
+                        <% } %>
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i
+                                            class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
+                                            diplôme</span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i
+                                            class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
+                                            thème</span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i
+                                            class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
+                                            mots-clés</span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i
+                                            class="ti-layout-sidebar-left"></i><span class="h6">Tous les
+                                            mémoires</span></a>
+                                </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- sidebar menu area end -->

@@ -1,0 +1,134 @@
+<!Doctype html>
+<html en='fr'
+    class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Page de connexion</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src: 'self'; base-uri: 'self'; style-src: 'self'; plugin-types: 'none'; object-src: 'none'">
+
+    <link rel="shortcut icon" type="image/png" href="template/strdash/images/icon/favicon.ico">
+    <link rel="stylesheet" href="template/strdash/css/bootstrap.min.css">
+    <link rel="stylesheet" href="template/strdash/css/font-awesome.min.css">
+    <link rel="stylesheet" href="template/strdash/css/themify-icons.css">
+    <!-- others css -->
+    <link rel="stylesheet" href="template/strdash/css/typography.css">
+    <link rel="stylesheet" href="template/strdash/css/default-css.css">
+    <link rel="stylesheet" href="template/strdash/css/styles.css">
+    <link rel="stylesheet" href="template/strdash/css/responsive.css">
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- login area start -->
+    <div class="login-area">
+        <div class="container">
+            <div class="login-box pt-5">
+                <!-- <form> -->
+                <form method="POST" action="/login">
+                    <div class="login-form-head">
+                        <h4>Connexion</h4>
+                        <p>Hello there, Sign in and start managing your Admin Template</p>
+                    </div>
+                    <div class="login-form-body h6">
+                        <% if(msg) { %>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <h6><code><%= msg %></code></h6>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                                    style="font-size: 12px !important">
+                                    <span class="fa fa-times"></span>
+                                </button>
+                            </div>
+                            <% } %>
+                                <div class="form-gp">
+                                    <label for="exampleInputEmail1">Adresse email</label>
+                                    <input type="email" id="exampleInputEmail1" name="email">
+                                    <i class="ti-email"></i>
+                                    <div class="text-danger"></div>
+                                </div>
+                                <div class="form-gp">
+                                    <label for="exampleInputPassword1">Mot de passe</label>
+                                    <input type="password" id="exampleInputPassword1" name="password">
+                                    <i class="ti-lock" id="icon"
+                                        onmouseover=" document.getElementById('exampleInputPassword1').setAttribute('type','text'); document.getElementById('icon').setAttribute('class','ti-eye'); "
+                                        onmouseout=" document.getElementById('exampleInputPassword1').setAttribute('type','password'); document.getElementById('icon').setAttribute('class','ti-lock'); "></i>
+                                    <div class="text-danger"></div>
+                                </div>
+                                <div class="row mb-4 rmber-area">
+                                    <div class="col-6">
+                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                            <input type="checkbox" class="custom-control-input"
+                                                id="customControlAutosizing" name="remember">
+                                            <label class="custom-control-label" for="customControlAutosizing">Se
+                                                souvient de
+                                                moi</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <a href="#">Mot de passe ?</a>
+                                    </div>
+                                </div>
+                                <div class="submit-btn-area">
+                                    <button id="form_submit" type="submit">Confirmer <i
+                                            class="ti-arrow-right"></i></button>
+                                    <div class="login-other row mt-4">
+                                        <div class="col-6">
+                                            <a class="fb-login" href="#">Se connecter avec <i
+                                                    class="fa fa-facebook"></i></a>
+                                        </div>
+                                        <div class="col-6">
+                                            <a class="google-login" href="#">Se connecter avec <i
+                                                    class="fa fa-google"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-footer text-center mt-5">
+                                    <p class="text-muted">Lorem insump <a href="/register">dolor es amos</a></p>
+                                </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- login area end -->
+    <!-- jquery latest version -->
+    <script src="template/strdash/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="template/strdash/js/bootstrap.min.js"></script>
+    <script src="template/strdash/js/metisMenu.min.js"></script>
+    <script src="template/strdash/js/jquery.slimscroll.min.js"></script>
+    <script src="template/strdash/js/jquery.slicknav.min.js"></script>
+
+    <!-- others plugins -->
+    <script src="template/strdash/js/plugins.js"></script>
+    <script src="template/strdash/js/scripts.js"></script>
+    <script>
+        async function submit_login() {
+            const email = document.getElementsByName('email');
+            const password = document.getElementsByName('password');
+            const remember = document.getElementsByName('remember');
+            const formData = ({ email, password, remember });
+            await fetch('/login', {
+                method: 'POST',
+                body: formData
+            }).then((res) => {
+                console.log(res)
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
+    </script>
+</body>
+
+</html>
