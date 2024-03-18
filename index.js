@@ -14,7 +14,8 @@ const all_mid = require('./app/middlewares/config');
 const helmet_mid = require('./app/middlewares/helmet');
 const serve_static = require("./app/middlewares/serve_static");
 const session = require("./app/middlewares/session");
-const cookieParser = require('cookie-parser');
+const cookie_parser = require('cookie-parser');
+const { logged } = require("./app/middlewares/logged");
 
 
 connection.connect((err) => {
@@ -26,12 +27,15 @@ connection.connect((err) => {
 app.use(all_mid);
 app.use(cors_mid);
 app.use(helmet_mid);
-app.use(serve_static);
+// app.use(serve_static);
 app.use(session);
-app.use(cookieParser());
+app.use(cookie_parser());
 
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
+
+
+app.use(express.static('public/'));
 
 // Route principale
 app.use('/',
@@ -40,7 +44,6 @@ app.use('/',
     memory_routes
 );
 
-// catch 404 and forward to error handler
 app.use(function (req, res) {
     res.status(404).render('404');
 });
@@ -48,4 +51,3 @@ app.use(function (req, res) {
 app.listen(PORT, (req, res) => {
     console.log(`Server is running on localhost: ${PORT}`);
 });
-

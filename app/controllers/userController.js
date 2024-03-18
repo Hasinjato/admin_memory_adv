@@ -10,8 +10,11 @@ const saltRounds = 10;
  */
 exports.getUser = async (req, res) => {
     const query = 'SELECT * FROM Users';
+
     connection.query(query, (err, rows) => {
+        
         if (err) throw err;
+
         res.status(200).json(rows);
     })
 }

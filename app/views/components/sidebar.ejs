@@ -43,27 +43,48 @@
                                         class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
                                         mention</span></a>
                             </li>
-                        <% } %>
-                                <li>
-                                    <a href="javascript:void(0)" aria-expanded="true"><i
+                        <% } 
+                        
+                        if(active === 'per_diploma') {%>
+                                <li class="active">
+                                    <a href="/memory/per_diploma" aria-expanded="true"><i
                                             class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
                                             diplôme</span></a>
                                 </li>
-                                <li>
-                                    <a href="javascript:void(0)" aria-expanded="true"><i
-                                            class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
-                                            thème</span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" aria-expanded="true"><i
-                                            class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
-                                            mots-clés</span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" aria-expanded="true"><i
-                                            class="ti-layout-sidebar-left"></i><span class="h6">Tous les
-                                            mémoires</span></a>
-                                </li>
+                        <%  }  else {%>
+                            <li>
+                                <a href="/memory/per_diploma" aria-expanded="true"><i
+                                        class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
+                                        diplôme</span></a>
+                            </li>
+                        <%  } 
+                        
+                        if(active === 'per_theme') {%>
+                            <li class="active">
+                                <a href="/memory/per_theme" aria-expanded="true"><i
+                                        class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
+                                        thème</span></a>
+                            </li>
+                        <%  }  else {%>
+                            <li>
+                                <a href="/memory/per_theme" aria-expanded="true"><i
+                                        class="ti-layout-sidebar-left"></i><span class="h6">Mémoire par
+                                        thème</span></a>
+                            </li>
+                        <%  }
+                        if(active === 'all') {%>
+                        <li class="active">
+                            <a href="/memory/all" aria-expanded="true"><i
+                                    class="ti-layout-sidebar-left"></i><span class="h6">Tous les
+                                    mémoires</span></a>
+                        </li>
+                        <%  }  else {%>
+                            <li>
+                                <a href="/memory/all" aria-expanded="true"><i
+                                        class="ti-layout-sidebar-left"></i><span class="h6">Tous les
+                                        mémoires</span></a>
+                            </li>
+                        <%  }  %>
                 </ul>
             </nav>
         </div>
