@@ -59,7 +59,7 @@
                             <div class="row">
                                 <div class="">
                                     <div class="row">
-                                        <form method="post" action="/memory/add" enctype="multipart/form-data"
+                                        <form method="post" action="/memory/compare_or_add" enctype="multipart/form-data"
                                             class="col-md-10 mt-10 mb-6">
                                             <h2 class="m-3">Ajouter une mémoire</h2>
                                             <h5>Veuillez remplir les formulaires suivants</h5>
@@ -114,6 +114,8 @@
                                                         aria-label="With textarea" name="keywords" autocomplete="off"
                                                         required></textarea>
                                                 </div>
+                                                <input type="hidden" name="is_added"
+                                                    value='false' />
                                                 <div class="form-group mb-3">
                                                     <label for="example-text-input-4" class="col-form-label">Version
                                                         numérique </label>
@@ -130,11 +132,15 @@
                                                 </div>
                                                 <div class="form-group mb-3">
                                                     <div class="login-other row mt-4">
-                                                        <div class="col-6">
+                                                        <!-- <div class="col-4">
+                                                            <a type="submit"
+                                                                class="btn btn-flat btn-warning btn-md mb-3 w-100">Comparer</a>
+                                                        </div> -->
+                                                        <div class="col-4">
                                                             <button type="submit"
                                                                 class="btn btn-flat btn-success btn-md mb-3 w-100">Ajouter</button>
                                                         </div>
-                                                        <div class="col-6">
+                                                        <div class="col-4">
                                                             <button type="reset"
                                                                 class="btn btn-flat btn-danger btn-md mb-3 w-100">Annuler</button>
                                                         </div>

@@ -61,57 +61,68 @@
                                     <div class="card card-bordered">
                                         <div class="card-body">
                                             <% if (memory !==null){ %>
-                                                <h5 class="card-text fw-bolder mb-3">Modifier les informations de mémoire de :
+                                                <h5 class="card-text fw-bolder mb-3">Modifier les informations de
+                                                    mémoire de :
                                                 </h5>
-                                                <form method="post" action="/memory/<%= memory.id %>">
+                                                <form method="post" action="/memory/update/<%= memory.id %>">
                                                     <div class="form-group">
                                                         <input type="text" name="student_name" class="form-control mb-3"
-                                                            value="<%= memory.student_name %>" placeholder="Nom de l'étudiant" autocomplete="off" />
+                                                            value="<%= memory.student_name %>"
+                                                            placeholder="Nom de l'étudiant" autocomplete="off" />
 
                                                         <input type="text" name="theme" class="form-control mb-3"
-                                                            value="<%= memory.theme %>" placeholder="Thème" autocomplete="off" />
+                                                            value="<%= memory.theme %>" placeholder="Thème"
+                                                            autocomplete="off" />
 
                                                         <input type="text" name="degree" class="form-control mb-3"
-                                                            value="<%= memory.degree %>" placeholder="Diplôme" autocomplete="off" />
+                                                            value="<%= memory.degree %>" placeholder="Diplôme"
+                                                            autocomplete="off" />
 
                                                         <input type="text" name="mention" class="form-control mb-3"
-                                                            value="<%= memory.mention %>" placeholder="Mention" autocomplete="off" />
+                                                            value="<%= memory.mention %>" placeholder="Mention"
+                                                            autocomplete="off" />
 
                                                         <input type="text" name="academic_year"
                                                             class="modal-footer form-control mb-3"
-                                                            value="<%= memory.academic_year %>" placeholder="Année" autocomplete="off" />
+                                                            value="<%= memory.academic_year %>" placeholder="Année"
+                                                            autocomplete="off" />
 
                                                         <textarea name="keywords" rows="3"
-                                                            class="modal-footer form-control mb-3" placeholder="Mots-clés"
+                                                            class="modal-footer form-control mb-3"
+                                                            placeholder="Mots-clés"
                                                             autocomplete="off"><%= memory.keywords %></textarea>
 
                                                         <button type="submit" class="btn btn-primary">Confirmer</button>
 
-                                                        <div class="modal-footer">
-                                                            <button onclick="
-                                                                    if(confirm('Voulez-vous la supprimer ?'))
-                                                                    fetch(`/memory/<%= memory.id %>/<%= memory.file %>`,{
-                                                                    method: 'DELETE'})
-                                                                    window.history.back()
-                                                                    window.location.reload();
-                                                                " class="btn fs-6 text-danger">
-                                                                <i class="ti-trash"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
                                                 </form>
-                                                <% } %>
+                                                <div class="modal-footer">
+                                                    <button onclick="
+                                                                    if(confirm('Voulez-vous la supprimer ?'))
+                                                                    {
+                                                                        fetch(`/memory?id_m=<%= memory.id %>&id_f=<%= memory.file %>`,{
+                                                                        method: 'DELETE'})
+                                                                        .then(() => {
+                                                                            location.href = '/memory/all';
+                                                                        })
+                                                                    }
+
+                                                                " class="btn fs-6 text-danger">
+                                                        <i class="ti-trash"></i>
+                                                    </button>
+                                                </div>
                                         </div>
+                                        <% } %>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- main content area end -->
-                        <!-- footer area start-->
-                        <%- include ('../components/footer.ejs') %>
-                            <!-- footer area end-->
                 </div>
+                <!-- main content area end -->
+                <!-- footer area start-->
+                <%- include ('../components/footer.ejs') %>
+                    <!-- footer area end-->
             </div>
+    </div>
     </div>
     <!-- page container area end -->
 

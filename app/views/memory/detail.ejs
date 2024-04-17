@@ -61,9 +61,9 @@
                                     <div class="card card-bordered">
                                         <div class="card-body">
                                             <% if (memory !==null){ %>
-                                                <p class="card-text">Mémoire de :
+                                                <p class="card-text mb-1">Mémoire de :
                                                 </p>
-                                                <h5 class="title">
+                                                <h5 class="title ms-5">
                                                     <%= memory.student_name %>
                                                 </h5>
                                                 <h4 class="subtitle bold">
@@ -72,21 +72,60 @@
                                                 <span class="modal-footer fs-4">
                                                     <%= memory.academic_year %>
                                                 </span>
-                                                <a href="<%= file_path %>" class="btn btn-primary">Voir le livre</a>
+                                                <span class="s-sw-title mb-0 mt-3">
+                                                    <%= memory.keywords %>
+                                                </span><br />
+                                                <a href="<%= file_path %>" class="btn btn-primary">
+                                                    <i class="fa fa-book me-1"></i> Voir le livre</a>
                                                 <div class="modal-footer fs-6">
-                                                    <a href="/memory/<%= memory.id %>" class="text-success me-1"><i
+                                                    <a href="/memory/update/<%= memory.id %>" class="text-success me-1"><i
                                                             class="ti-pencil-alt"></i></a>
                                                     <button onclick="
                                                                     if(confirm('Voulez-vous la supprimer ?'))
-                                                                    fetch(`/memory/<%= memory.id %>/<%= memory.file %>`,{
+                                                                    fetch(`/memory?id_m=<%= memory.id %>&id_f=<%= memory.file %>`,{
                                                                     method: 'DELETE'})
-                                                                    window.history.back()
-                                                                    window.location.reload();
+                                                                    .then(() => {
+                                                                        location.href = '/memory/all';
+                                                                    })
                                                                 " class="btn text-danger">
                                                         <i class="ti-trash"></i>
                                                     </button>
                                                 </div>
-                                                <% } %>
+                                                <br />
+                                                <a href="/memory/compare?id_m=<%= memory.id %>" class="btn btn-success">Comparer à une autre mémoire</a>
+                                                
+                                                <form method="post" action="/memory/compare_to_all" class="row">
+                                                    <input type="hidden" name="student_name"
+                                                        value="<%= memory.student_name %>" />
+                                                    <input type="hidden" name="theme"
+                                                        value="<%= memory.theme %>" />
+                                                    <input type="hidden" name="degree"
+                                                        value="<%= memory.degree %>" />
+                                                    <input type="hidden" name="mention"
+                                                        value="<%= memory.mention %>" />
+                                                    <input type="hidden" name="academic_year"
+                                                        value="<%= memory.academic_year %>" />
+                                                    <input type="hidden" name="keywords"
+                                                        value="<%= memory.keywords %>" />
+                                                    <input type="hidden" name="memory_mention"
+                                                        value="<%= memory.mention %>" />
+                                                    <input type="hidden" name="memory_path"
+                                                        value="<%= file.path %>" />
+                                                    <input type="hidden" name="is_added"
+                                                        value='true' />
+
+
+                                                    <input type="hidden" name="memory_file_path"
+                                                        value="<%= file.path %>" />
+
+                                                    <input type="hidden" name="memory_mention_m"
+                                                        value="<%= memory.mention %>" />
+                                                        
+                                                    <button type="submit"
+                                                        class="btn btn-md btn-success fs-5 mt-2">Comparer à tous
+                                                        les mémoires des<span class="fw-bold"> <%= memory.mention %></span></button>
+                                                </form>
+                                            <% } %>
                                         </div>
                                     </div>
                                 </div>

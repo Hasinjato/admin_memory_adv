@@ -14,6 +14,7 @@ const all_mid = require('./app/middlewares/config');
 const helmet_mid = require('./app/middlewares/helmet');
 const serve_static = require("./app/middlewares/serve_static");
 const session = require("./app/middlewares/session");
+const allow_form_csp = require("./app/middlewares/allow-form-csp");
 const cookie_parser = require('cookie-parser');
 const { logged } = require("./app/middlewares/logged");
 
@@ -30,6 +31,8 @@ app.use(helmet_mid);
 // app.use(serve_static);
 app.use(session);
 app.use(cookie_parser());
+
+app.use(allow_form_csp);
 
 app.set('views', './app/views');
 app.set('view engine', 'ejs');

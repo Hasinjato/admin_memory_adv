@@ -13,6 +13,8 @@ let msg;
 exports.registerForm = (req, res) => {
 
     res.status(200).render('auth/register', { msg });
+
+    // res.status(404).render('404');
 }
 
 /**

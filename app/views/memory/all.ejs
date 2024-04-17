@@ -30,7 +30,6 @@
     <div id="preloader">
         <div class="loader"></div>
     </div> <!-- preloader area end -->
-    <!-- page container area start -->
     <div>
         <%- include ('../components/sidebar.ejs') %>
             <!-- sidebar menu area end -->
@@ -61,7 +60,25 @@
                                     <div class="row">
                                         <form method="post" action="" enctype="multipart/form-data" class="mt-10 mb-6">
                                             <div class="d-print-none">
-                                                <h2 class="m-3">Tous les mémoires</h2>
+                                                <div class="heading">
+                                                    <h2 class="m-3 d-inline">Tous les mémoires</h2>
+                                                    <div class="dropdown ms-5">
+                                                        <button class="btn btn-light dropdown-toggle" type="button"
+                                                            data-toggle="dropdown">
+                                                            Dropdown button
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">Action</a>
+                                                            <a class="dropdown-item" href="#">Another action</a>
+                                                            <a class="dropdown-item" href="#">Something else here</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% if(msg){ %>
+                                                    <h5 class="m-3">
+                                                        <%= msg %>
+                                                    </h5>
+                                                    <% } %>
                                             </div>
                                             <div class="card">
                                                 <div class="card-body">

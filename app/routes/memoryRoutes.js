@@ -1,26 +1,57 @@
 const express = require('express');
 const router = express.Router();
 const { is_auth } = require('../middlewares/is_auth');
-const addController = require('../controllers/addController');
-const memoryController = require('../controllers/memoryController');
+const {
+    addForm,
+    addMemory,
+    abord_add_memory
+} = require('../controllers/addController');
+
+const {
+    getMemoryPerMention,
+    getMemoryPerDiploma,
+    getMemoryPerThemeForm,
+    getAllMemory,
+    getMemoryDetail,
+    updateMemoryForm,
+    updateMemory,
+    deleteMemory,
+    getFormCompare,
+    compareMemory,
+    compareMemoryToAll,
+    before_add_compare
+} = require('../controllers/memoryController');
+
 const upload = require('../../config/multer.config');
 
-router.get('/memory/add', is_auth, addController.addForm);
+router.get('/memory/add', is_auth, addForm);
 
-router.post('/memory/add', is_auth, upload.single('file'), addController.addMemory);
+router.post('/memory/add', is_auth, upload.single('file'), addMemory);
 
-router.get('/memory/per_mention', is_auth, memoryController.getMemoryPerMention);
+router.get('/memory/abord_add', is_auth, abord_add_memory);
 
-router.get('/memory/per_diploma', is_auth, memoryController.getMemoryPerDiploma);
+router.get('/memory/per_mention', is_auth, getMemoryPerMention);
 
-router.get('/memory/per_theme', is_auth, memoryController.getMemoryPerThemeForm);
+router.get('/memory/per_diploma', is_auth, getMemoryPerDiploma);
 
-router.get('/memory/all', is_auth, memoryController.getAllMemory);
+router.get('/memory/per_theme', is_auth, getMemoryPerThemeForm);
 
-router.get('/memory', is_auth, memoryController.getMemoryDetail);
+router.get('/memory/all', is_auth, getAllMemory);
 
-router.get('/memory/:id', is_auth, memoryController.updateMemoryForm);
+router.get('/memory', is_auth, getMemoryDetail);
 
-router.post('/memory/:id', is_auth, memoryController.updateMemory);
+router.get('/memory/update/:id', is_auth, updateMemoryForm);
+
+router.post('/memory/update/:id', is_auth, updateMemory);
+
+router.delete('/memory', is_auth, deleteMemory);
+
+router.get('/memory/compare', is_auth, getFormCompare);
+
+router.post('/memory/compare', is_auth, compareMemory);
+
+router.post('/memory/compare_or_add', is_auth, upload.single('file'), before_add_compare);
+
+router.post('/memory/compare_to_all', is_auth, compareMemoryToAll);
 
 module.exports = router;

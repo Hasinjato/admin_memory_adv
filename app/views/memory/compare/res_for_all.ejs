@@ -1,0 +1,230 @@
+<!Doctype html>
+<html en='fr'
+    class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Résultat du comparaison</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src: 'self'; base-uri: 'self'; style-src: 'self'; plugin-types: 'none'; object-src: 'none'">
+
+    <link rel="shortcut icon" type="image/png" href="/template/strdash/images/icon/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/template/strdash/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/template/strdash/css/themify-icons.css">
+    <!-- others css -->
+    <link rel="stylesheet" href="/template/strdash/css/typography.css">
+    <link rel="stylesheet" href="/template/strdash/css/default-css.css">
+    <link rel="stylesheet" href="/template/strdash/css/styles.css">
+    <link rel="stylesheet" href="/template/strdash/css/responsive.css">
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div> <!-- preloader area end -->
+    <!-- page container area start -->
+    <div>
+        <%- include ('../../components/sidebar.ejs') %>
+            <!-- sidebar menu area end -->
+            <div class="main-content position-absolute top-0 end-0" style="min-height: 313px">
+                <!-- main content area start -->
+                <div class="">
+                    <!-- header area start -->
+                    <%- include ('../../components/header.ejs') %>
+                        <!-- header area end -->
+                        <!-- page title area start -->
+                        <div class="page-title-area d-print-none">
+                            <div class="row align-items-center">
+                                <div class="col-sm-8">
+                                    <div class="breadcrumbs-area clearfix">
+                                        <ul class="breadcrumbs pull-left">
+                                            <li><a href="/home">Accueil</a></li>
+                                            <li><span>Comparer les Mémoires</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <%- include('../../components/account.ejs') %>
+                            </div>
+                        </div>
+                        <!-- page title area end -->
+                        <div class="main-content-inner">
+                            <div class="d-print-none">
+                                <h2 class="mt-1">Ajouter ce mémoire, voici la résultat</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-9 mt-4 m-auto">
+                                    <div class="card card-bordered">
+                                        <div class="card-body">
+                                            <div class="col-6 pe-3 m-auto">
+                                                <% if(!similarityRes) { %>
+                                                    <% } %>
+
+                                                <h5 class="title">
+                                                    <span class="text-decoration-underline h6">Mémoire de
+                                                    </span> :
+                                                    <%= memory.student_name %>
+                                                </h5>
+                                                <h4 class="subtitle mb-3">
+                                                    <span class="text-decoration-underline h6">Thème </span>
+                                                    :
+                                                    <%= memory.theme %>
+                                                </h4>
+                                                <h4 class="subtitle bold">
+                                                    <%= memory.degree %> - <%= memory.mention %>
+                                                </h4>
+                                                <span class="modal-footer fs-4">
+                                                    <span class="text-decoration-underline h6">Année </span>
+                                                    :
+                                                    <%= memory.academic_year %>
+                                                </span>
+                                                <span class="s-sw-title mb-0">
+                                                    <%= memory.keywords %>
+                                                </span><br />
+                                                <a href="<%= memory.file_path %>"
+                                                    class="btn btn-sm btn-primary" target="_blank">
+                                                    <i class="fa fa-book me-1"></i> Voir ce livre</a>
+                                                    <% if(!is_added) { %>
+                                                    <form action="/memory/add" method="post" class="d-inline">
+                                                        <input type="hidden" name="student_name"
+                                                            value="<%= memory.student_name %>" />
+                                                        <input type="hidden" name="theme"
+                                                            value="<%= memory.theme %>" />
+                                                        <input type="hidden" name="degree"
+                                                            value="<%= memory.degree %>" />
+                                                        <input type="hidden" name="mention"
+                                                            value="<%= memory.mention %>" />
+                                                        <input type="hidden" name="academic_year"
+                                                            value="<%= memory.academic_year %>" />
+                                                        <input type="hidden" name="keywords"
+                                                            value="<%= memory.keywords %>" />
+                                                        <input type="hidden" name="memory_mention"
+                                                            value="<%= memory.mention %>" />
+                                                        <input type="hidden" name="mimetype"
+                                                            value="<%= memory.file.mimetype %>" />
+                                                        <input type="hidden" name="filename"
+                                                            value="<%= memory.file.filename %>" />
+                                                        <input type="hidden" name="path"
+                                                            value="<%= memory.file.path %>" />
+                                                        <button type="submit" class="btn fs-6 fw-bold btn-outline-success ms-4">
+                                                            <i class="fa fa-exclamation me-1"></i> Ajouter ce mémoire
+                                                        </button>
+                                                    </form>
+                                                    <% }%>
+                                                <a href="/memory/abord_add"
+                                                    class="btn btn-sm fw-bold btn-info ms-4 text-light">
+                                                    <i class="fa fa-exclamation-triangle me-2 me-1"></i> Aborder
+                                                </a>
+                                                <br />
+                                                <br />
+                                            </div>
+                                            <hr />
+                                            <div class="card-body pt-0">
+                                                <h4 class="header-title fs-4">Les résultats du comparaison avec tous les mémoires de <b><%= memories_match[0].mention %></b>:</h4>
+                                                <div id="accordion3" class="according accordion-s3">
+
+                                                    <% for (var j = 0; j < memories_match.length; j++) { %>
+                                                        <% if(similarityRes[j] != 100) { %>
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <a class="card-link collapsed"
+                                                                        data-toggle="collapse" href="#accordionid<%= memories_match[j].id %>"
+                                                                        aria-expanded="false">
+                                                                        <span class="badge bg-danger position-absolute start-0 top-0"><%= memories_match[j].degree %>: <%= memories_match[j].academic_year %></span>
+                                                                        <span class="d-inline-block" style="width: 85% !important"><%= j+1 %> - <%= memories_match[j].theme %></span>
+                                                                        <span class="badge fs-4 me-4 float-end" style="width:auto;background: hsl(<%=(similarityRes[j]*100)+80 %>deg 80% 50%)"><%= similarityRes[j] %>%</span>
+                                                                    </a>
+                                                                </div>
+                                                                <div id="accordionid<%= memories_match[j].id %>" class="collapse"
+                                                                    data-parent="#accordion3">
+                                                                    <div class="card-body">
+                                                                            <p class="title text-decoration-underline">Les phrases similaires :</p>
+                                                                            <p>
+                                                                                <%= identiquePhrase[j] %>
+                                                                            </p>
+                                                                        <% if(similarityRes[j] == 0.00){ %>
+                                                                            <h2 class="text-success text-center"> Pas de phrases similaire</h2>
+                                                                        <% } %>
+                                                                        <br />
+                                                                        <a href="/memory?id=<%= memories_match[j].id %>"
+                                                                            class="btn btn-sm btn-primary" target="_blank">Le détail de ce mémoire</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <% } %>
+                                                    <% } %> 
+                                                </div>
+                                            </div>
+                                            <div class="m-2 text-center">
+                                                <% if(!is_added){ %>
+                                                <form action="/memory/add" method="post" class="d-inline">
+                                                    <input type="hidden" name="student_name"
+                                                        value="<%= memory.student_name %>" />
+                                                    <input type="hidden" name="theme"
+                                                        value="<%= memory.theme %>" />
+                                                    <input type="hidden" name="degree"
+                                                        value="<%= memory.degree %>" />
+                                                    <input type="hidden" name="mention"
+                                                        value="<%= memory.mention %>" />
+                                                    <input type="hidden" name="academic_year"
+                                                        value="<%= memory.academic_year %>" />
+                                                    <input type="hidden" name="keywords"
+                                                        value="<%= memory.keywords %>" />
+                                                    <input type="hidden" name="memory_mention"
+                                                        value="<%= memory.mention %>" />
+                                                    <input type="hidden" name="mimetype"
+                                                        value="<%= memory.file.mimetype %>" />
+                                                    <input type="hidden" name="filename"
+                                                        value="<%= memory.file.filename %>" />
+                                                    <input type="hidden" name="path"
+                                                        value="<%= memory.file.path %>" />
+                                                    <button type="submit" class="btn fs-6 fw-bold btn-outline-success ms-4">
+                                                        <i class="fa fa-exclamation me-1"></i> Ajouter ce mémoire
+                                                    </button>
+                                                </form>
+                                                <% } %>
+                                                <a href="/memory/abord_add"
+                                                    class="btn btn-sm fw-bold btn-info ms-4 text-light"">
+                                                    <i class="fa fa-exclamation-triangle me-1"></i> Aborder
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- main content area end -->
+                        <!-- footer area start-->
+                        <%- include ('../../components/footer.ejs') %>
+                            <!-- footer area end-->
+                </div>
+            </div>
+    </div>
+    <!-- page container area end -->
+
+    <!-- jquery latest version -->
+    <script src="/template/strdash/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="/template/strdash/js/popper.min.js"></script>
+    <script src="/template/strdash/js/bootstrap.min.js"></script>
+    <script src="/template/strdash/js/owl.carousel.min.js"></script>
+    <script src="/template/strdash/js/metisMenu.min.js"></script>
+    <script src="/template/strdash/js/jquery.slimscroll.min.js"></script>
+    <script src="/template/strdash/js/jquery.slicknav.min.js"></script>
+
+    <!-- others plugins -->
+    <script src="/template/strdash/js/plugins.js"></script>
+    <script src="/template/strdash/js/scripts.js"></script>
+    <script>
+        document.getElementById('lala').innerHTML = identiquePhrase;
+    </script>
+</body>
+
+</html>

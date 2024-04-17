@@ -15,4 +15,7 @@ router.post('/login', req_limiter, authController.login);
 
 router.get('/logout', authController.logout);
 
+router.get('/', function(req, res){
+	res.redirect('/login')
+});
 module.exports = router;
